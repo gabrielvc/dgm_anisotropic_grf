@@ -1,0 +1,9 @@
+[submodule "python/datasources"]
+	path = python/datasources
+	url = git@github.com:gabrielvc/datasources.git
+[submodule "python/latent_vae"]
+	path = python/latent_vae
+	url = git@github.com:gabrielvc/latent_vae.git
+[submodule "python/diff_post_gauss"]
+	path = python/diff_post_gauss
+	url = git@github.com:gabrielvc/diff_post_gauss.git
