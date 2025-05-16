@@ -1,0 +1,4 @@
+useDynLib(NSGP)
+import(RcppEigen,parallel,Matrix,fields)
+importFrom(Rcpp, evalCpp)
+exportPattern("^[[:alpha:]]+")

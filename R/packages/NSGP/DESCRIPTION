@@ -1,0 +1,13 @@
+Package: NSGP
+Type: Package
+Title: Tools for locally anistropic random fields
+Version: 1.0.1
+Author: Anonymous
+Maintainer: Anonymous <anonymous@mail.com>
+Description: Tools for locally anistropic random fields
+License: Private
+Encoding: UTF-8
+Imports: Rcpp, RcppEigen, parallel, Matrix, fields
+LinkingTo: Rcpp, RcppEigen
+RoxygenNote: 7.2.3
+SystemRequirements: C++17
