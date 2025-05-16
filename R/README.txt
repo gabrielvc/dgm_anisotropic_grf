@@ -18,5 +18,4 @@ This folder contains all the R code used in the project.
 
 The following R packages are necessary to run the code: 
   * From the CRAN: Matrix, fields, RcppEigen, rhdf5, RTriangle, tictoc, terra, scoringRules
-  * From other sources : gstlearn (https://gstlearn.org/?page_id=48)
   * From the authors: NSGP, BayesNSGP (which source files are provided)
