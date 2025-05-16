@@ -78,15 +78,15 @@ def make_inverse_problem(
     if inverse_problem_cfg.task == "inpainting_iso":
         with h5py.File(inverse_problem_cfg.mask_path, "r") as f:
             if inverse_problem_cfg.mask_type == "unif":
-                mask = torch.from_numpy(f["unif"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None, None]).cuda()
-                noise = torch.from_numpy(f["noise_unif"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None, None]).cuda()
-            elif inverse_problem_cfg.mask_type == "cluster":
-                mask = torch.from_numpy(f["cluster"][inverse_problem_cfg.sample_index][None]).cuda()
-                noise = torch.from_numpy(f["noise_cluster"][inverse_problem_cfg.sample_index][None]).cuda()
+                mask = torch.from_numpy(f["unif"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None, None])
+                noise = torch.from_numpy(f["noise_unif"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None, None])
+            elif inverse_problem_cfg.mask_type == "clust":
+                mask = torch.from_numpy(f["clust"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index]][None])
+                noise = torch.from_numpy(f["noise_clust"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index]][None])
             else:
                 raise NotImplementedError("Only unif and cluster implemented")
         with h5py.File(inverse_problem_cfg.origin_path, "r") as f:
-            x_orig = torch.from_numpy(f["data"][inverse_problem_cfg.sample_index]).cuda()
+            x_orig = torch.from_numpy(f["data"][inverse_problem_cfg.sample_index])
         H_func = Inpainting(
                 missing_indices=torch.where(mask.flatten() == 0)[0],
                 channels=img_shape[0],

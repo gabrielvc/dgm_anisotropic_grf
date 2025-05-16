@@ -8,7 +8,6 @@ from latent_vae.vaes import GaussGaussVAE
 from latent_vae.utils import get_autoencoder_makers_and_configs, get_datasource
 
 
-
 @click.command()
 @click.option(
     "--preset",
