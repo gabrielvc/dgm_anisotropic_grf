@@ -1,0 +1,5 @@
+task: "super_resolution"
+ratio: 16
+std: 0.05
+data_path: PATH_TO_VALIDATION_DATASET
+data_idx: 41

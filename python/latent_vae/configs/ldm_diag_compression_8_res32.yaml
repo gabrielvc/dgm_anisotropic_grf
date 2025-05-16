@@ -1,0 +1,22 @@
+defaults:
+  - autoencoder: ldm_32x32x8.yaml
+  - optimizers: adam_b16.yaml
+  - vae: diag_variance.yaml
+  - datasource: gauss.yaml
+  
+save_logs: PATH_TO_SAVE_LOGS
+name: Gauss
+
+checkpoint:
+  dirpath: PATH_TO_SAVE_CHECKPOINTS
+  save_top_k: 3
+  monitor: "val/uRMSE"
+
+trainer:
+  max_epochs: 50
+  val_check_interval: 6000
+  check_val_every_n_epoch: null
+  log_every_n_steps: 1
+  precision: "bf16-mixed"
+  accelerator: "gpu"
+  strategy: "ddp"

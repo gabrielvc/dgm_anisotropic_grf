@@ -1,0 +1,14 @@
+torch
+torchvision
+torchaudio
+einops
+numpy
+matplotlib
+jupyter
+lightning
+scikit-learn
+tensorboard
+click
+hydra-core
+h5py
+normflows

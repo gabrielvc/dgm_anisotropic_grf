@@ -1,0 +1,6 @@
+name: dps
+nsteps: 931
+nsamples: 40
+
+parameters:
+  gamma: 1.

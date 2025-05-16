@@ -1,0 +1,23 @@
+name: mgdm
+nsteps: 100
+nsamples: 40
+
+parameters:
+  n_reps: 1
+  n_denoising_steps: 20
+  eta: 1.
+  tau_sampling: mix
+  threshold: 70
+  min_tau: 10
+  gradient_steps_fn:
+    conditions:
+      - condition: "i >= n_steps * 0.75"
+        return: 20
+      - condition: "default"
+        return: 3
+  lr_fn:
+    conditions:
+      - condition: "i <= n_steps * 0.25"
+        return: 0.01
+      - condition: "default"
+        return: 0.03

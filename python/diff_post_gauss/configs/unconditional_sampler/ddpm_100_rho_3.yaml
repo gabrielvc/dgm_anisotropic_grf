@@ -1,0 +1,5 @@
+sampler_type: DDIM
+num_steps: 100
+denoiser_type: "ema_16-97"
+rho: 3
+eta: 1.

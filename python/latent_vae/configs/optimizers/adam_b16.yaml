@@ -1,0 +1,12 @@
+accumulate_grad: 32
+optimizer:
+  type: Adam
+  base_learning_rate: 0.001
+  
+
+lr_schedule:
+  type: "ReduceLROnPlateau"
+  metric_to_track: "val/lk"
+  metric_mode: "min"
+  frequency: 1
+  factor: 0.5

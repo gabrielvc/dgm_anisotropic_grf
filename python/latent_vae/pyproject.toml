@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "latent_vae"
+version = "0.0.0"
+authors = [
+]
+description = "A package containing code for training and using a latent VAE"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "torch",
+  "torchvision",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]

@@ -1,0 +1,10 @@
+img_resolution: 256
+img_channels: 1
+label_dim: 0
+use_fp16: true
+sigma_data: 1
+logvar_channels: 128
+model_channels: 64
+channel_mult: [1, 1, 2, 2, 4]
+num_blocks: 3
+attn_resolutions: [16, 8]

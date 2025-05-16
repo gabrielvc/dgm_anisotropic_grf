@@ -1,0 +1,8 @@
+task: "inpainting_ganiso"
+mask_path: PATH_TO_MASKS_H5
+mask_type: "unif"
+origin_path: PATH_TO_DATA_h5
+mask_size_level: 2
+mask_index: 2
+sample_index: 2
+std: 0.01

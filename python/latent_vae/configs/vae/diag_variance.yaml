@@ -1,0 +1,5 @@
+variance_type: "diag"
+scale_max: 0.33
+kl_start: 1
+kl_max: 1
+kl_coeff: 1

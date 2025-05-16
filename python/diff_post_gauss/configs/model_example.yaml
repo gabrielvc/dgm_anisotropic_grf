@@ -1,0 +1,19 @@
+defaults:
+  - datasource: ambient.yaml
+  - denoiser: ambient.yaml
+  - diffusion: ve_more_tail.yaml
+  - optimizer: edm2_adam.yaml
+  - ema: double_ema.yaml
+  - checkpoint: ambient.yaml
+
+trainer:
+  max_epochs: 80
+  accumulate_grad_batches: 8 #CHange this so that with the batch size and n of gpu it makes a batch of 2048
+  check_val_every_n_epoch: 1
+  log_every_n_steps: 10
+  precision: "bf16-mixed"
+  accelerator: "gpu"
+  strategy: "ddp_find_unused_parameters_true"
+
+save_logs: PATH_TO_SAVE_LOGS
+starting_model_checkpoint: SPECIFY_IF_FINETUNING

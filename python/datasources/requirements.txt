@@ -1,0 +1,6 @@
+torch
+torchvision
+lightning
+numpy
+h5py
+pytest

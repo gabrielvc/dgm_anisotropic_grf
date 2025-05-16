@@ -1,0 +1,68 @@
+name: daps
+nsteps: 200
+nsamples: 40
+
+parameters:
+  lr: 5e-5
+  tau: 0.01
+  lr_min_ratio: 0.01
+  lgv_steps: 100
+  debug_plots: False
+
+  annealing_scheduler_config:
+    num_steps: 400
+    sigma_max: 80
+    sigma_min: 0.1
+    sigma_final: 0.02
+    schedule: 'linear'
+    timestep: 'poly-7'
+
+  diffusion_scheduler_config:
+    num_steps: 5
+    sigma_min: 0.01
+    sigma_final: 0.02
+    schedule: 'linear'
+    timestep: 'poly-7'
+
+context_parameters:
+  task:
+    phase_retrieval:
+      lr: 5e-5
+      tau: 0.01
+      lr_min_ratio: 0.01
+    high_dynamic_range:
+      lr: 2e-5
+      tau: 0.01
+      lr_min_ratio: 0.01
+    random_99:
+      lr: 1e-4
+      tau: 0.01
+      lr_min_ratio: 0.01
+    inpainting_center:
+      lr: 5e-5
+      tau: 0.01
+      lr_min_ratio: 0.01
+    motion_blur:
+      lr: 5e-5
+      tau: 0.01
+      lr_min_ratio: 0.01
+    nonlinear_blur:
+      lr: 5e-5
+      tau: 0.01
+      lr_min_ratio: 0.01
+    outpainting_half:
+      lr: 5e-5
+      tau: 0.01
+      lr_min_ratio: 0.01
+    outpainting_expand:
+      lr: 5e-5
+      tau: 0.01
+      lr_min_ratio: 0.01
+    sr4:
+      lr: 1e-4
+      tau: 0.01
+      lr_min_ratio: 0.01
+    sr16:
+      lr: 1e-4
+      tau: 0.01
+      lr_min_ratio: 0.01

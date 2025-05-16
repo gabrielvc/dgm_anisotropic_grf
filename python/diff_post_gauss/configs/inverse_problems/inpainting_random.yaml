@@ -1,0 +1,6 @@
+task: "inpainting"
+mask: "random"
+data_path: PATH_TO_VALIDATION_DATA
+data_idx: 42
+random_ptg: 0.001
+std: 0.05

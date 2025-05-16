@@ -1,0 +1,26 @@
+# configs copy/paste from https://github.com/zihuiwu/PnP-DM-public/blob/master/configs/sampler/pnp_edm.yaml
+vp:
+  solver: euler
+  discretization: vp
+  schedule: vp
+  scaling: vp
+  epsilon_s: 1.0e-3
+ve:
+  solver: euler
+  discretization: ve
+  schedule: ve
+  scaling: none
+iddpm:
+  solver: euler
+  discretization: iddpm
+  schedule: linear
+  scaling: none
+  C_1: 0.001
+  C_2: 0.008
+  M: 1000
+edm:
+  solver: euler             # in ['euler', 'heun']
+  discretization: edm       # in ['vp', 've', 'iddpm', 'edm']
+  schedule: linear          # in ['vp', 've', 'linear']
+  scaling: none             # in ['vp', 'none']
+  rho: 7

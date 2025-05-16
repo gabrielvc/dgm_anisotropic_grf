@@ -1,0 +1,13 @@
+latent_channels: 8
+type: "ldm"
+encoder:
+    model_channels: 128
+    channel_mult: [1, 2, 2, 3]
+    num_blocks: 2
+    attn_resolutions: [16,]  # Turning attention of probably useless for mnist
+
+decoder:
+    model_channels: 128  # First embedding channels
+    channel_mult: [1, 2, 2, 3]
+    num_blocks: 2
+    attn_resolutions: [16,]  # Turning attention of probably useless for mnist

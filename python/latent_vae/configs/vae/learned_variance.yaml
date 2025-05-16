@@ -1,0 +1,5 @@
+variance_type: "learned"
+scale_max: 0.00001
+kl_start: 10_000
+kl_max: 0.00001
+kl_coeff: 0.00000000001
