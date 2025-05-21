@@ -1,5 +1,5 @@
 name: "GaussDataModule"
-data_dir: /lustre/fswork/projects/rech/otq/commun/ganiso/train
+data_dir: PATH_TO_TRAINING_DATA
 batch_size: 10
 n_procs: 3
 val_ptg: 0.01

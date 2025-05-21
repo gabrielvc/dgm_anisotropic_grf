@@ -49,8 +49,8 @@ train_dataloader = DataLoader(
 )
 #%%
 denoisers = {
-    "new": {"preset": "isotropic_ambient_diffusion_smaller_more_tail_deeper.yaml",
-           "ckpt_path": "data/lightning_models_jean_zay/Diff/isotropic_deeper/epoch=79-step=9280.ckpt"},
+    "new": {"preset": "ambient.yaml",
+           "ckpt_path": "CHECKPOINT_PATH"},
     }
 for name, infos in denoisers.items():
     with initialize(version_base=None, config_path=config_path):
