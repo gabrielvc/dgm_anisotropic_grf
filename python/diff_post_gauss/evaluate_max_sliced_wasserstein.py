@@ -1,10 +1,9 @@
 import torch
-from torch.utils.data import DataLoader, ConcatDataset, TensorDataset
+from torch.utils.data import DataLoader, ConcatDataset
 from datasources.gauss_spde import AmbientGaussH5Dataset
 from datasources.h5 import H5Dataset
 import ot
 from tqdm import tqdm
-import math
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -20,15 +19,8 @@ class GenH5Dataset(H5Dataset):
             "data_sample": self._file["images"][index],
         }
 
-
-#ref_data_dir = "data/anisotropic_data/validation"
-#train_data_dir = "data/anisotropic_data/train"
-
-ref_data_dir = "data/isotropic_data/validation"
-train_data_dir = "data/isotropic_data/train"
-
-# ref_data_dir = "data/tourb/validation"
-# train_data_dir = "data/tourb/train"
+ref_data_dir = "path_TO_REFERENCE_DATA"
+train_data_dir = "PATH_TO_TRAIN_DATA"
 
 datasets = []
 for dataset_path in os.listdir(ref_data_dir):
@@ -109,128 +101,11 @@ max_sws = torch.load(os.path.join("data", f_name))
 # %%
 models_to_test = {
     (
-        "ddpm",
-        1000,
-        3,
-    ): "data/generated_data/isotropic_ambient_diffusion_smaller_more_tail_deeper/ddpm_1000_rho_3/data.h5",
+        "NAME_OF_SAMPLER",
+        ADDITIONAL_INFO_1,#FOR EXAMPLE NUMBER OF STEPS
+        aDDITIONAL_INFO_2,#FOR EXAMPLE RHO, NONE CAN BE PASSED
+    ): "PATH_TO_GENERATED_SAMPLER_FOLDER/data.h5",
 }
-
-# models_to_test = {
-#         (
-#         "ddpm",
-#         100,
-#         "fine_tuning",
-#     ): "data/generated_data/fine_tuning_turb/ddpm_100_rho_3/data.h5",
-#     (
-#         "ddpm",
-#         100,
-#         "old",
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_3/data.h5",
-
-#         (
-#         "ddpm",
-#         1000,
-#         "fine_tuning",
-#     ): "data/generated_data/fine_tuning_turb/ddpm_1000_rho_3/data.h5",
-#     (
-#         "ddpm",
-#         1000,
-#         "old",
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_1000_rho_3/data.h5",
-# }
-
-# models_to_test = {
-#     (
-#         "ddim",
-#         100,
-#         1,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddim_100_rho_1/data.h5",
-#     (
-#         "ddim",
-#         100,
-#         2,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddim_100_rho_2/data.h5",
-#     (
-#         "ddim",
-#         100,
-#         3,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddim_100_rho_3/data.h5",
-#     (
-#         "ddim",
-#         100,
-#         4,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddim_100_rho_4/data.h5",
-#     (
-#         "ddim",
-#         100,
-#         5,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddim_100_rho_5/data.h5",
-#     (
-#         "ddim",
-#         100,
-#         6,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddim_100_rho_6/data.h5",
-#     (
-#         "ddim",
-#         100,
-#         7,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddim_100_rho_7/data.h5",
-#     (
-#         "edm",
-#         128,
-#         3,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/edm_128_rho_3/data.h5",
-#     (
-#         "ddpm",
-#         100,
-#         1,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_1/data.h5",
-#     (
-#         "ddpm",
-#         100,
-#         2,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_2/data.h5",
-#     (
-#         "ddpm",
-#         100,
-#         3,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_3/data.h5",
-#     (
-#         "ddpm",
-#         100,
-#         4,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_4/data.h5",  
-#     (
-#         "ddpm",
-#         100,
-#         5,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_5/data.h5",
-#     (
-#         "ddpm",
-#         100,
-#         6,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_6/data.h5",
-#     (
-#         "ddpm",
-#         100,
-#         7,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_100_rho_7/data.h5",   
-#     (
-#         "ddpm",
-#         250,
-#         3,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_250_rho_3/data.h5",
-#     (
-#         "ddpm",
-#         1000,
-#         1,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_1000_rho_1/data.h5",
-#     (
-#         "ddpm",
-#         1000,
-#         3,
-#     ): "data/generated_data/ambient_diffusion_smaller_more_tail_deeper/ddpm_1000_rho_3/data.h5",
-# }
 
 
 for name, gen_data_path in models_to_test.items():

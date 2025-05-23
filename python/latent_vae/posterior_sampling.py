@@ -19,10 +19,10 @@ def ula(state, n_steps, lr, score, eta=0.01):
 
 
 def make_all_inverse_problems_potentials(
-    ckpt_path="lightning_models/Gauss/epoch=22-step=2722.ckpt",
-    preset="ldm_diag_compression_8_res32.yaml",
+    ckpt_path,
+    preset,
+    data_path,
     img_shape=(1, 256, 256),
-    data_path="data/Gauss/data_temp_anom.h5",
     idx=0,
     std=0.05,
 ):
@@ -111,8 +111,8 @@ if __name__ == "__main__":
     n_mcmc = 100
     n_warmup = 20
     n_steps_ula = 1000
-    file_with_nuts = f"vae_cloud_samples_{lr}_{n_steps_ula}_{n_warmup}_{n_mcmc}_v2.h5"
-    file_without_nuts = f"vae_cloud_samples_{lr}_{n_steps_ula}_0_0_v2.h5"
+    file_with_nuts = PATH
+    file_without_nuts = PATH
        
     for idx in [2, 1]:
         x_orig, latent_shape, log_post_ula, log_post_nuts, vae = (

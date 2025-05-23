@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=65.5"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "mgdm"
+version = "0.0.0"
+
+dependencies = [
+    "torch",
+    "torchvision",
+    "transformers",
+    "diffusers[torch]",
+    "lpips",
+    "Pillow",
+    "numpy",
+    "scikit-learn",
+    "matplotlib",
+    "tqdm",
+    "omegaconf",
+    "tqdm",
+    "PyYAML",
+    "einops",
+    "lightning",
+    "taming-transformers-rom1504",
+    "hydra-core",
+    "pandas",
+    "wandb",
+    "pytorch_fid",
+    # --- For audio model
+    "torchaudio",
+    "librosa",
+    "audio-diffusion-pytorch==0.0.43",  # install this version to align with MDSM
+    "av",
+    "ipython",
+    # ---
+]

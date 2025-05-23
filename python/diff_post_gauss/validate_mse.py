@@ -17,11 +17,9 @@ config_path = "configs/"
 batch_size = 64
 
 #%%
-# ref_data_dir = "data/anisotropic_data/validation"
-# train_data_dir = "data/anisotropic_data/train"
 
-ref_data_dir = "data/isotropic_data/validation"
-train_data_dir = "data/isotropic_data/train"
+ref_data_dir = "path_TO_REF_DATA"
+train_data_dir = "PATH_TO_TRAIN_DATA"
 
 datasets = []
 for dataset_path in os.listdir(ref_data_dir):

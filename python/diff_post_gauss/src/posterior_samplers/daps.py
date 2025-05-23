@@ -133,12 +133,15 @@ class DAPS(nn.Module):
                 + torch.randn_like(x0y) * self.annealing_scheduler.sigma_steps[step + 1]
             )
 
-            #if step % 10 == 0:
-                # if display_im:
-                #     for sample in x0y:
-                #         if x0y.shape[-1] == 256:
-                #             display(sample.clamp(-1, 1))
-                        # elif x0y.shape[-1] == 64:
+            if step % 10 == 0:
+                if display_im:
+                    import matplotlib.pyplot as plt
+                    plt.imshow(x0y[0, 0].cpu())
+                    plt.savefig("test_sample.png")
+                    # for sample in x0y:
+                    #     if x0y.shape[-1] == 256:
+                    #         display(sample.clamp(-1, 1))
+                    #     # elif x0y.shape[-1] == 64:
                         #     display(
                         #         epsilon_net.decode(sample.unsqueeze(0)).clamp(-1, 1),
                         #         title=f"tau: {tau}",

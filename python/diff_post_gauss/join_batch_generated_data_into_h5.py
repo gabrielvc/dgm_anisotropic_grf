@@ -1,25 +1,12 @@
 import torch
-from diffgauss.edm2.training.networks_edm2 import Precond
 import os
-from typing import Union
 
 import torch
 
-torch.set_float32_matmul_precision("high")
 import os
-import numpy as np
 import h5py
-import lightning as L
 import click
-from omegaconf import OmegaConf
-from hydra import initialize, compose
 from tqdm import tqdm
-import datetime
-from pathlib import Path
-from diffgauss.utils import load_diffusion_net, load_vae
-from functools import partial
-from torch.utils.data import Dataset, DataLoader
-from lightning.pytorch.callbacks import BasePredictionWriter
 
 @click.command()
 @click.option(
@@ -31,7 +18,7 @@ from lightning.pytorch.callbacks import BasePredictionWriter
 )
 @click.option(
     "--field_name",
-    help="Path to generated data repository",
+    help="Field name",
     metavar="STR",
     type=str,
     required=True,

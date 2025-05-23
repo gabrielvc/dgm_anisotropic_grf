@@ -5,7 +5,7 @@ from pytorch_lightning import LightningModule, Trainer, LightningDataModule
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from datasources.h5 import H5Dataset
-from torchvision.models import vgg16, resnet18, resnet34, resnet50, resnet101
+from torchvision.models import resnet18, resnet34, resnet50, resnet101
 import os
 from torch.utils.data import DataLoader, random_split, ConcatDataset
 import torchmetrics
@@ -32,10 +32,11 @@ class BinarizedModule(torch.nn.Module):
 class GenH5Dataset(H5Dataset):
 
     def __init__(self, std_added: float = 0.0, **kwargs):
-        super().__init__(**kwargs, data_axis=0, data_name="images")
+        super().__init__(**kwargs, data_axis=0, data_name="samples")
         self.std_added = std_added
     def format_element(self, index):
-        data_sample = torch.from_numpy(self._file["images"][index]).float()
+        print(self._file.keys())
+        data_sample = torch.from_numpy(self._file["samples"][index]).float()
         return {
             "data_sample":  data_sample + torch.randn_like(data_sample) * self.std_added,
             "label": torch.zeros((1,)),
@@ -53,19 +54,6 @@ class RefH5Dataset(H5Dataset):
         return {
             "data_sample": data_sample,
             "label": torch.ones((1,)),
-        }
-
-class Ref2H5Dataset(H5Dataset):
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs, data_axis=0, data_name="data")
-
-
-    def format_element(self, index):
-        data_sample = torch.from_numpy(self._file["data"][index]).float()
-        return {
-            "data_sample": data_sample,
-            "label": torch.zeros((1,)),
         }
 
 class TrueFakeDataModule(LightningDataModule):

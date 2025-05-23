@@ -5,8 +5,6 @@ build-backend = "hatchling.build"
 [project]
 name = "datasources"
 version = "0.0.0"
-authors = [,
-]
 description = "A package containing data sources that I have used."
 readme = "README.md"
 requires-python = ">=3.12"

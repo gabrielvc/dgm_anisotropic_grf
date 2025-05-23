@@ -1,7 +1,6 @@
 import torch
 from pathlib import Path
 
-torch.set_float32_matmul_precision("medium")
 
 import click
 from hydra import initialize, compose
@@ -10,11 +9,7 @@ import h5py
 from diffgauss.utils import load_diffusion_net
 import os
 
-from datasources.gauss_spde import AmbientGaussH5Dataset
-from torch.utils.data import DataLoader, ConcatDataset, TensorDataset
-import matplotlib.pyplot as plt
 
-from posterior_samplers.diffusion_utils import ddim
 from posterior_samplers.mgdm import mgdm
 from posterior_samplers.dps import dps
 from posterior_samplers.ddnm import ddnm_plus
@@ -29,10 +24,7 @@ from posterior_samplers.mgps import mgps
 from ddrm.functions.svd_replacement import Inpainting, SuperResolution
 
 
-from utils.experiments_tools import get_gpu_memory_consumption
-from utils.metrics import LPIPS, PSNR, SSIM
-from utils.im_invp_utils import generate_invp, Hsimple
-from posterior_samplers.diffusion_utils import load_epsilon_net, EpsilonNetSVD
+from posterior_samplers.diffusion_utils import EpsilonNetSVD
 from utils.im_invp_utils import InverseProblem
 from tqdm import tqdm
 
@@ -81,8 +73,8 @@ def make_inverse_problem(
                 mask = torch.from_numpy(f["unif"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None, None])
                 noise = torch.from_numpy(f["noise_unif"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None, None])
             elif inverse_problem_cfg.mask_type == "clust":
-                mask = torch.from_numpy(f["clust"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index]][None])
-                noise = torch.from_numpy(f["noise_clust"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index]][None])
+                mask = torch.from_numpy(f["clust"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None])
+                noise = torch.from_numpy(f["noise_clust"][inverse_problem_cfg.sample_index, inverse_problem_cfg.mask_index][None])
             else:
                 raise NotImplementedError("Only unif and cluster implemented")
         with h5py.File(inverse_problem_cfg.origin_path, "r") as f:
