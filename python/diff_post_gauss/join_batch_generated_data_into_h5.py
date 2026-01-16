@@ -38,7 +38,9 @@ def cmdline(
         all_files = os.listdir(raw_data_path)
         for i, batch_file in tqdm(enumerate(all_files)):
             try:
-                batch_data = torch.load(os.path.join(raw_data_path, batch_file), map_location=torch.device("cpu"))
+                batch_data = torch.load(os.path.join(raw_data_path, batch_file), 
+                                        map_location=torch.device("cpu"),
+                                        weights_only= False) # TODO see https://docs.pytorch.org/docs/stable/generated/torch.load.html for weights_only safety
                 if i == 0:
                     batch_size = batch_data[field_name].shape[0]
                     n_samples = batch_size * len(all_files)

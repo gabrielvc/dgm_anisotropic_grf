@@ -3,7 +3,7 @@ from typing import Union
 import torch
 torch.set_float32_matmul_precision('medium')
 
-from datasources.gauss_spde import GaussVEDataModule
+from datasources.flumy import FlumyVEDataModule
 from diffgauss.training import EDM2Diffusion
 
 import datetime
@@ -13,8 +13,8 @@ from hydra import initialize, compose
 
 
 def load_datasource(datasource_cfg, diffusion_cfg):
-    return GaussVEDataModule(
-    **datasource_cfg, diffusion_cfg=diffusion_cfg, is_latent=datasource_cfg["name"] == "LatentGauss"
+    return FlumyVEDataModule(
+    **datasource_cfg, diffusion_cfg=diffusion_cfg
     )
         
 

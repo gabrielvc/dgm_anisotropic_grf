@@ -20,10 +20,10 @@ To train the model, do the following:
 
 ```
 cd python/diff_post_gauss
-python train_diffusion_script.py --preset YOUR_CONFIGURATION_PRESET
+python train_diffusion_script.py --preset YOUR_TRAINED_PRESET
 ```
 
-You can use the configuration preset for one of the models, as for example `anisotropic_prior_diffusion.yaml`. Note that you will need to adapth the paths, namely for the datasource configuration.
+You can use the configuration preset for one of the models, as for example `model_example.yaml`. Note that you will need to adapth the paths, namely for the datasource configuration.
 
 ### Generation from DGM
 
@@ -31,13 +31,13 @@ Once the model is trained, one can generate samples by running the command
 
 ```
 cd python/diff_post_gauss
-python generate_samples.py --preset TRAINED_PRESET --ckpt_path PATH_TO_CHECKPOINT --batch_size BATCH_SIZE --n_samples HOW_MANY_SAMPLES_YOU_WANT --config_sampler CONFIGURATION_FOR_SAMPLER --save_folder WHERE_TO_SAVE --trainer_offset SEED_FOR_GENERATION
+python generate_script.py --preset YOUR_TRAINED_PRESET --ckpt_path PATH_TO_CHECKPOINT --batch_size BATCH_SIZE --n_samples HOW_MANY_SAMPLES_YOU_WANT --config_sampler CONFIGURATION_FOR_SAMPLER --save_folder WHERE_TO_SAVE --trainer_offset SEED_FOR_GENERATION
 ```
 This will create a subfolder in `WHERE_TO_SAVE` with the name of the sampler from `CONFIGURATION_FOR_SAMPLER` which will then have a subfolder named `raw_data` where a `SEED.pt` file will be created.
 One can then reassemble all those `.pt` files into a `.h5`file by running
 ```
 cd python/diff_post_gauss
-python join_batch_generated_data_into_h5.py --path PATH_TO_FOLDER_CONTAINING_RAW_DATA --field_name samples
+python join_batch_generated_data_into_h5.py --path PATH_TO_FOLDER_CONTAINING_RAW_DATA --field_name images
 ```
 This will create a `data.h5̀` file in `PATH_TO_FOLDER_CONTAINING_RAW_DATA` with everything that was inside `PATH_TO_FOLDER_CONTAINING_RAW_DATA/raw_data`.
 

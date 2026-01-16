@@ -39,6 +39,11 @@ def dict_to_tensor(item):
         for k, el in item.items()
     }
 
+def random_crop(item, crop_size):
+    rc = transforms.RandomCrop(crop_size)
+    item["data_sample"] = rc(item["data_sample"])
+    return item
+
 def add_ve_noise(item, sigma_max, sigma_min, log_mean, log_std, **kwargs):
 
     noise_level = (
@@ -114,6 +119,8 @@ class VEDataset(Dataset):
         self.base_dataset = base_dataset
         methods = [dict_to_tensor]
         methods += [
+            partial(remove_mean_std, mean=0.2476677981275561, std=0.1596085308468355),   # TODO: make mean/std configurable
+            partial(random_crop, crop_size = (128, 128)),  # TODO: make crop size configurable
             partial(add_ve_noise, **diffusion_cfg),
         ]
 

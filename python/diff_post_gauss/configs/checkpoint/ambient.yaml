@@ -1,3 +1,3 @@
-dirpath: PATH_TO_SAVE_CHECKPOINTS
+dirpath: /data/Flumy/turb_2D_def_vargr/checkpoint_3
 every_n_train_steps: 20
 save_top_k: -1

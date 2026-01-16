@@ -51,8 +51,8 @@ def image_grid(imgs, rows, cols):
 def load_diffusion_net(diffusion_cfg, ckpt_path, sampler_config, is_latent: bool = False):
 
     if not is_latent:
-        img_shape=(1, 256, 256)
-
+        img_shape=(1, 128, 128) # TODO: make size configurable
+        print(f"Loading diffusion model from {ckpt_path}")
         effective_batch_size = diffusion_cfg["datasource"]["batch_size"]*torch.cuda.device_count()*diffusion_cfg["trainer"]["accumulate_grad_batches"]
         denoiser = EDM2Diffusion.load_from_checkpoint(
             ckpt_path,
@@ -61,6 +61,7 @@ def load_diffusion_net(diffusion_cfg, ckpt_path, sampler_config, is_latent: bool
             denoiser_config=diffusion_cfg["denoiser"],
             gammas=diffusion_cfg["ema"]["gammas"],
             batch_size=effective_batch_size,
+            weights_only=False # TODO see https://docs.pytorch.org/docs/stable/generated/torch.load.html for weights_only safety
         )
     if sampler_config is not None:
         denoiser.configure_predict_step(mode="generate", **sampler_config)
